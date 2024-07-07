@@ -1,35 +1,28 @@
 import React from "react";
 import "./Header.css";
 
-const Header = (props) => {
-      const {
-            randomise,
-            initiateBubbleSort,
-            initiateInsertionSort,
-            initiateHeapSort,
-            initiateMergeSort,
-            initiateQuickSort,
-      } = props;
+const Header = ({handleButtonClick}) => {
+      
     return (
         <div className="nav">
               <h2 className="heading">Sorting Visualiser</h2>
 
-              <button className="buttons" onClick={randomise}>
+              <button className="buttons" onClick={()=>handleButtonClick("randomise")}>
                     Randomise
               </button>
-              <button className="buttons" onClick={initiateBubbleSort}>
+              <button className="buttons" onClick={()=>handleButtonClick("bubbleSort")}>
                     Bubble Sort
               </button>
-              <button className="buttons" onClick={initiateInsertionSort}>
+              <button className="buttons" onClick={()=>handleButtonClick("insertionSort")}>
                     Insertion Sort
               </button>
-              <button className="buttons" onClick={initiateHeapSort}>
+              <button className="buttons" onClick={()=>handleButtonClick("heapSort")}>
                     Heap Sort
               </button>
-              <button className="buttons" onClick={initiateMergeSort}>
+              <button className="buttons" onClick={()=>handleButtonClick("mergeSort")}>
                     Merge Sort
               </button>
-              <button className="buttons" onClick={initiateQuickSort}>
+              <button className="buttons" onClick={()=>handleButtonClick("quickSort")}>
                     Quick Sort
               </button>
         </div>

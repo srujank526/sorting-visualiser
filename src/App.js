@@ -1,10 +1,8 @@
-import Header from "./components/Header";
-import BarContainer from "./components/BarContainer"
+import AppContainer from "./components/AppContainer";
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <BarContainer/>
+      <AppContainer/>
     </div>
   );
 }

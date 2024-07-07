@@ -1,0 +1,9 @@
+.barContainer {
+	display: flex;
+	padding: 2rem 0;
+	text-align: center;
+	width: fit-content;
+	margin: auto;
+	align-items: flex-end;
+	height: 520px;
+}

@@ -81,6 +81,5 @@ export const heapSort = (array) => {
             // the first element is out of order, so bublle down
             array = bubbleDown(array, 0, array.length - i - 1);
       }
-
       return animations;
 };

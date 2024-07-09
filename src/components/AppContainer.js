@@ -21,7 +21,7 @@ const AppContainer = () => {
         setNUMBER_OFBARS(value);
         setArray(generateRandomArray(MIN_BAR_HEIGHT, MAX_BAR_HEIGHT, NUMBER_OF_BARS));
     }
-    console.log(NUMBER_OF_BARS)
+    
     return (<>
         <Header handleButtonClick={handleButtonClick} />
         <BarContainer array={array} sortType={sortType} noOfBars = {NUMBER_OF_BARS}/>

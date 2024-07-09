@@ -5,7 +5,6 @@ import { swapFunction } from "../utils/swapFunction";
 // then to check if they should swap
 // then finally to change them to original color
 
-// you can use anything which seems easy and logical to you
 
 let animations = [];
 // this function is to check if the node can move upwards (bubbled up)
@@ -32,7 +31,7 @@ const bubbleUp = (array, idx) => {
       return bubbleUp(array, parent);
 };
 
-// this array is used to convert a given array to heap
+// this function is used to convert a given array to heap
 const heapify = (array) => {
       for (let i = 1; i < array.length; i++) {
             array = bubbleUp(array, i);
@@ -40,7 +39,7 @@ const heapify = (array) => {
       return array;
 };
 
-// this is a function to check if the node can move downwards (bubbled down)
+// this function is used to check if the node can move downwards (bubbled down)
 const bubbleDown = (array, idx, length) => {
       const left = 2 * idx + 1;
       const right = 2 * idx + 2;
@@ -78,7 +77,7 @@ export const heapSort = (array) => {
             animations.push([0, array.length - 1 - i, true]);
             array = swapFunction(array, 0, array.length - 1 - i);
 
-            // the first element is out of order, so bublle down
+            // the first element is out of order, so bubble down
             array = bubbleDown(array, 0, array.length - i - 1);
       }
       return animations;

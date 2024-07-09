@@ -16,7 +16,9 @@ const BarContainer = ({ array, sortType, noOfBars }) => {
     const HIGHLIGHT_COLOR = "deepPink";
     const FINISHED_COLOR = "lightGreen";
     const PIVOT_COLOR = "tomato";
+    
     const [arr, setArr] = useState(array);
+
     useEffect(() => {
         setArr(array)
         const bars = document.getElementsByClassName("bar");

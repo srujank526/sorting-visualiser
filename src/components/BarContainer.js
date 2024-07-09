@@ -8,8 +8,8 @@ import { mergeSort } from "../Algorithms/mergeSort";
 import { quickSort } from "../Algorithms/quickSort";
 import { swapFunction } from "../utils/swapFunction";
 
-const BarContainer = ({ array, sortType }) => {
-    const NUMBER_OF_BARS = 100;
+const BarContainer = ({ array, sortType, noOfBars }) => {
+    const NUMBER_OF_BARS = noOfBars;
     const TIME_PER_MOVE = 3;
     const PRIMARY_COLOR = "turquoise";
     const SECONDARY_COLOR = "lightBlue";
@@ -38,7 +38,7 @@ const BarContainer = ({ array, sortType }) => {
         else if (sortType === "mergeSort") {
             initiateMergeSort();
         }
-        else if(sortType === "quickSort"){
+        else if (sortType === "quickSort") {
             initiateQuickSort();
         }
     }, [sortType]);
@@ -250,90 +250,90 @@ const BarContainer = ({ array, sortType }) => {
 
         let multiplier = 2;
         for (let i = 0; i < animations.length; i++) {
-              if (i % 3 === 0) {
-                    const [
-                          firstbar,
-                          secondbar,
-                          pivot,
-                          isSubtaskCompleted,
-                    ] = animations[i];
-                    setTimeout(() => {
-                          if (isSubtaskCompleted) {
-                                bars[
-                                      secondbar
-                                ].style.backgroundColor = SECONDARY_COLOR;
-                                bars[
-                                      firstbar
-                                ].style.backgroundColor = HIGHLIGHT_COLOR;
-                                bars[
-                                      pivot
-                                ].style.backgroundColor = PIVOT_COLOR;
-                          } else {
-                                bars[
-                                      secondbar
-                                ].style.backgroundColor = HIGHLIGHT_COLOR;
-                                bars[
-                                      firstbar
-                                ].style.backgroundColor = HIGHLIGHT_COLOR;
-                                bars[
-                                      pivot
-                                ].style.backgroundColor = PIVOT_COLOR;
-                          }
-                    }, i * multiplier * TIME_PER_MOVE);
-              } else if (i % 3 === 1) {
-                    const [firstbar, secondbar] = animations[i];
-                    const bool = animations[i][3];
-                    let copyArray = array;
-                    if (bool) {
-                          setTimeout(() => {
-                                copyArray = swapFunction(
-                                      copyArray,
-                                      firstbar,
-                                      secondbar
-                                );
-                                setArr([...copyArray]);
-                          }, i * multiplier * TIME_PER_MOVE);
+            if (i % 3 === 0) {
+                const [
+                    firstbar,
+                    secondbar,
+                    pivot,
+                    isSubtaskCompleted,
+                ] = animations[i];
+                setTimeout(() => {
+                    if (isSubtaskCompleted) {
+                        bars[
+                            secondbar
+                        ].style.backgroundColor = SECONDARY_COLOR;
+                        bars[
+                            firstbar
+                        ].style.backgroundColor = HIGHLIGHT_COLOR;
+                        bars[
+                            pivot
+                        ].style.backgroundColor = PIVOT_COLOR;
+                    } else {
+                        bars[
+                            secondbar
+                        ].style.backgroundColor = HIGHLIGHT_COLOR;
+                        bars[
+                            firstbar
+                        ].style.backgroundColor = HIGHLIGHT_COLOR;
+                        bars[
+                            pivot
+                        ].style.backgroundColor = PIVOT_COLOR;
                     }
-              } else {
-                    const [firstbar, secondbar, pivot, bool] = animations[
-                          i
-                    ];
+                }, i * multiplier * TIME_PER_MOVE);
+            } else if (i % 3 === 1) {
+                const [firstbar, secondbar] = animations[i];
+                const bool = animations[i][3];
+                let copyArray = array;
+                if (bool) {
                     setTimeout(() => {
-                          bars[
-                                firstbar
-                          ].style.backgroundColor = PRIMARY_COLOR;
-                          bars[
-                                secondbar
-                          ].style.backgroundColor = PRIMARY_COLOR;
-                          if (bool) {
-                                bars[
-                                      pivot
-                                ].style.backgroundColor = SECONDARY_COLOR;
-                          }
-                          for (let k = 0; k < bars.length - 1; k++) {
-                                if (array[k] <= array[k + 1]) {
-                                      bars[
-                                            k
-                                      ].style.backgroundColor = SECONDARY_COLOR;
-                                } else {
-                                      break;
-                                }
-                          }
+                        copyArray = swapFunction(
+                            copyArray,
+                            firstbar,
+                            secondbar
+                        );
+                        setArr([...copyArray]);
                     }, i * multiplier * TIME_PER_MOVE);
-              }
+                }
+            } else {
+                const [firstbar, secondbar, pivot, bool] = animations[
+                    i
+                ];
+                setTimeout(() => {
+                    bars[
+                        firstbar
+                    ].style.backgroundColor = PRIMARY_COLOR;
+                    bars[
+                        secondbar
+                    ].style.backgroundColor = PRIMARY_COLOR;
+                    if (bool) {
+                        bars[
+                            pivot
+                        ].style.backgroundColor = SECONDARY_COLOR;
+                    }
+                    for (let k = 0; k < bars.length - 1; k++) {
+                        if (array[k] <= array[k + 1]) {
+                            bars[
+                                k
+                            ].style.backgroundColor = SECONDARY_COLOR;
+                        } else {
+                            break;
+                        }
+                    }
+                }, i * multiplier * TIME_PER_MOVE);
+            }
         }
         setTimeout(() => {
-              for (let i = 0; i < bars.length; i++) {
-                    bars[i].style.backgroundColor = SECONDARY_COLOR;
-              }
+            for (let i = 0; i < bars.length; i++) {
+                bars[i].style.backgroundColor = SECONDARY_COLOR;
+            }
         }, animations.length * multiplier * TIME_PER_MOVE);
 
         setTimeout(() => {
-              for (let i = 0; i < bars.length; i++) {
-                    bars[i].style.backgroundColor = FINISHED_COLOR;
-              }
+            for (let i = 0; i < bars.length; i++) {
+                bars[i].style.backgroundColor = FINISHED_COLOR;
+            }
         }, (animations.length + 50) * multiplier * TIME_PER_MOVE);
-  };
+    };
 
 
 

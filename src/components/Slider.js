@@ -1,7 +1,7 @@
 import React from "react";
 import "./Slider.css";
 
-const Slider = ({ handleSlider,initialValue }) => {
+const Slider = ({ handleSlider, initialValue }) => {
     const sliderChange = (e) => {
         handleSlider(e.target.value);
     }

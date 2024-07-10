@@ -8,7 +8,7 @@ import { mergeSort } from "../Algorithms/mergeSort";
 import { quickSort } from "../Algorithms/quickSort";
 import { swapFunction } from "../utils/swapFunction";
 
-const BarContainer = ({ array, sortType, noOfBars, handleIsSorting}) => {
+const BarContainer = ({ array, sortType, noOfBars, handleIsSorting }) => {
     const NUMBER_OF_BARS = noOfBars;
     const TIME_PER_MOVE = 3;
     const PRIMARY_COLOR = "turquoise";
@@ -59,7 +59,7 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting}) => {
                     bars[
                         secondbar
                     ].style.backgroundColor = HIGHLIGHT_COLOR;
-                }, i  * TIME_PER_MOVE);
+                }, i * TIME_PER_MOVE);
             } else if (i % 3 === 1) {
                 const [firstbar, secondbar, bool] = animations[i];
                 let copyArray = arr;
@@ -71,7 +71,7 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting}) => {
                             secondbar
                         );
                         setArray([...copyArray]);
-                    }, i  * TIME_PER_MOVE);
+                    }, i * TIME_PER_MOVE);
                 }
             } else {
                 const [firstbar, secondbar] = animations[i];
@@ -91,7 +91,7 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting}) => {
                             secondbar
                         ].style.backgroundColor = PRIMARY_COLOR;
                     }
-                }, i  * TIME_PER_MOVE);
+                }, i * TIME_PER_MOVE);
             }
         }
         setTimeout(() => {
@@ -99,7 +99,7 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting}) => {
                 bars[i].style.backgroundColor = FINISHED_COLOR;
             }
             handleIsSorting(false);
-        }, (animations.length + 100)  * TIME_PER_MOVE);
+        }, (animations.length + 100) * TIME_PER_MOVE);
     };
     const initiateInsertionSort = () => {
         handleIsSorting(true);
@@ -124,7 +124,7 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting}) => {
                         secondbar
                     );
                     setArray([...copyArray]);
-                }, i * multiplier *TIME_PER_MOVE);
+                }, i * multiplier * TIME_PER_MOVE);
             } else {
                 setTimeout(() => {
                     bars[
@@ -133,7 +133,7 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting}) => {
                     bars[
                         secondbar
                     ].style.backgroundColor = SECONDARY_COLOR;
-                }, i  * multiplier * TIME_PER_MOVE);
+                }, i * multiplier * TIME_PER_MOVE);
             }
         }
         setTimeout(() => {
@@ -141,7 +141,7 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting}) => {
                 bars[i].style.backgroundColor = FINISHED_COLOR;
             }
             handleIsSorting(false);
-        }, (animations.length + 100)  * multiplier * TIME_PER_MOVE);
+        }, (animations.length + 100) * multiplier * TIME_PER_MOVE);
     };
     const initiateHeapSort = () => {
         handleIsSorting(true)

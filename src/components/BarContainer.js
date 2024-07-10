@@ -42,7 +42,7 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting }) => {
         else if (sortType === "quickSort") {
             initiateQuickSort();
         }
-    }, [sortType]);
+    }, [sortType, initiateBubbleSort, initiateHeapSort, initiateInsertionSort, initiateMergeSort, initiateQuickSort]);
 
     const initiateBubbleSort = () => {
         handleIsSorting(true);
@@ -251,7 +251,6 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting }) => {
             handleIsSorting(false);
         }, (animations.length + 200) * TIME_PER_MOVE);
     };
-
     const initiateQuickSort = () => {
         handleIsSorting(true);
         let unsortedArray = [...array];

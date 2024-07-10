@@ -27,7 +27,6 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting }) => {
         }
     }, [array]);
     useEffect(() => {
-        console.log(sortType)
         if (sortType === "bubbleSort") {
             initiateBubbleSort();
         }

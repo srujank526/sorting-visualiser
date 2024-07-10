@@ -8,7 +8,7 @@ import { mergeSort } from "../Algorithms/mergeSort";
 import { quickSort } from "../Algorithms/quickSort";
 import { swapFunction } from "../utils/swapFunction";
 
-const BarContainer = ({ array, sortType, noOfBars }) => {
+const BarContainer = ({ array, sortType, noOfBars, handleIsSorting}) => {
     const NUMBER_OF_BARS = noOfBars;
     const TIME_PER_MOVE = 3;
     const PRIMARY_COLOR = "turquoise";
@@ -16,11 +16,11 @@ const BarContainer = ({ array, sortType, noOfBars }) => {
     const HIGHLIGHT_COLOR = "deepPink";
     const FINISHED_COLOR = "lightGreen";
     const PIVOT_COLOR = "tomato";
-    
-    const [arr, setArr] = useState(array);
+
+    const [arr, setArray] = useState(array);
 
     useEffect(() => {
-        setArr(array)
+        setArray(array)
         const bars = document.getElementsByClassName("bar");
         for (let i = 0; i < bars.length; i++) {
             bars[i].style.backgroundColor = PRIMARY_COLOR;
@@ -46,9 +46,9 @@ const BarContainer = ({ array, sortType, noOfBars }) => {
     }, [sortType]);
 
     const initiateBubbleSort = () => {
+        handleIsSorting(true);
         const animations = bubbleSort([...arr]);
         const bars = document.getElementsByClassName("bar");
-        const bubbleMultiplier = 0.5;
         for (let i = 0; i < animations.length; i++) {
             if (i % 3 === 0) {
                 const [firstbar, secondbar] = animations[i];
@@ -59,7 +59,7 @@ const BarContainer = ({ array, sortType, noOfBars }) => {
                     bars[
                         secondbar
                     ].style.backgroundColor = HIGHLIGHT_COLOR;
-                }, i * bubbleMultiplier * TIME_PER_MOVE);
+                }, i  * TIME_PER_MOVE);
             } else if (i % 3 === 1) {
                 const [firstbar, secondbar, bool] = animations[i];
                 let copyArray = arr;
@@ -70,8 +70,8 @@ const BarContainer = ({ array, sortType, noOfBars }) => {
                             firstbar,
                             secondbar
                         );
-                        setArr([...copyArray]);
-                    }, i * bubbleMultiplier * TIME_PER_MOVE);
+                        setArray([...copyArray]);
+                    }, i  * TIME_PER_MOVE);
                 }
             } else {
                 const [firstbar, secondbar] = animations[i];
@@ -91,19 +91,21 @@ const BarContainer = ({ array, sortType, noOfBars }) => {
                             secondbar
                         ].style.backgroundColor = PRIMARY_COLOR;
                     }
-                }, i * bubbleMultiplier * TIME_PER_MOVE);
+                }, i  * TIME_PER_MOVE);
             }
         }
         setTimeout(() => {
             for (let i = 0; i < bars.length; i++) {
                 bars[i].style.backgroundColor = FINISHED_COLOR;
             }
-        }, (animations.length + 100) * bubbleMultiplier * TIME_PER_MOVE);
+            handleIsSorting(false);
+        }, (animations.length + 100)  * TIME_PER_MOVE);
     };
     const initiateInsertionSort = () => {
+        handleIsSorting(true);
         const animations = insertionSort(array);
         const bars = document.getElementsByClassName("bar");
-
+        const multiplier = 3
         for (let i = 0; i < animations.length - 1; i++) {
             let [firstbar, secondbar] = animations[i];
             if (i % 2 === 0) {
@@ -121,8 +123,8 @@ const BarContainer = ({ array, sortType, noOfBars }) => {
                         firstbar,
                         secondbar
                     );
-                    setArr([...copyArray]);
-                }, i * 2 * TIME_PER_MOVE);
+                    setArray([...copyArray]);
+                }, i * multiplier *TIME_PER_MOVE);
             } else {
                 setTimeout(() => {
                     bars[
@@ -131,16 +133,18 @@ const BarContainer = ({ array, sortType, noOfBars }) => {
                     bars[
                         secondbar
                     ].style.backgroundColor = SECONDARY_COLOR;
-                }, i * 2 * TIME_PER_MOVE);
+                }, i  * multiplier * TIME_PER_MOVE);
             }
         }
         setTimeout(() => {
             for (let i = 0; i < bars.length; i++) {
                 bars[i].style.backgroundColor = FINISHED_COLOR;
             }
-        }, (animations.length + 100) * 2 * TIME_PER_MOVE);
+            handleIsSorting(false);
+        }, (animations.length + 100)  * multiplier * TIME_PER_MOVE);
     };
     const initiateHeapSort = () => {
+        handleIsSorting(true)
         let unsortedArray = [...array];
         const animations = heapSort(unsortedArray);
         const bars = document.getElementsByClassName("bar");
@@ -166,7 +170,7 @@ const BarContainer = ({ array, sortType, noOfBars }) => {
                             firstbar,
                             secondbar
                         );
-                        setArr([...copyArray]);
+                        setArray([...copyArray]);
                     }, i * TIME_PER_MOVE);
                 }
             } else {
@@ -192,9 +196,11 @@ const BarContainer = ({ array, sortType, noOfBars }) => {
             for (let i = 0; i < bars.length; i++) {
                 bars[i].style.backgroundColor = FINISHED_COLOR;
             }
+            handleIsSorting(false);
         }, (animations.length + 100) * TIME_PER_MOVE);
     };
     const initiateMergeSort = () => {
+        handleIsSorting(true);
         const bars = document.getElementsByClassName("bar");
         const animations = mergeSort([...array]);
 
@@ -243,9 +249,12 @@ const BarContainer = ({ array, sortType, noOfBars }) => {
             for (let i = 0; i < bars.length; i++) {
                 bars[i].style.backgroundColor = FINISHED_COLOR;
             }
+            handleIsSorting(false);
         }, (animations.length + 200) * TIME_PER_MOVE);
     };
+
     const initiateQuickSort = () => {
+        handleIsSorting(true);
         let unsortedArray = [...array];
         const animations = quickSort(unsortedArray);
         const bars = document.getElementsByClassName("bar");
@@ -293,7 +302,7 @@ const BarContainer = ({ array, sortType, noOfBars }) => {
                             firstbar,
                             secondbar
                         );
-                        setArr([...copyArray]);
+                        setArray([...copyArray]);
                     }, i * multiplier * TIME_PER_MOVE);
                 }
             } else {
@@ -334,6 +343,7 @@ const BarContainer = ({ array, sortType, noOfBars }) => {
             for (let i = 0; i < bars.length; i++) {
                 bars[i].style.backgroundColor = FINISHED_COLOR;
             }
+            handleIsSorting(false);
         }, (animations.length + 50) * multiplier * TIME_PER_MOVE);
     };
 

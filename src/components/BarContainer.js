@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Bar from "./Bar";
 import "./BarContainer.css";
 import { bubbleSort } from "../Algorithms/bubbleSort"
@@ -26,25 +26,8 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting }) => {
             bars[i].style.backgroundColor = PRIMARY_COLOR;
         }
     }, [array]);
-    useEffect(() => {
-        if (sortType === "bubbleSort") {
-            initiateBubbleSort();
-        }
-        else if (sortType === "insertionSort") {
-            initiateInsertionSort();
-        }
-        else if (sortType === "heapSort") {
-            initiateHeapSort();
-        }
-        else if (sortType === "mergeSort") {
-            initiateMergeSort();
-        }
-        else if (sortType === "quickSort") {
-            initiateQuickSort();
-        }
-    }, [sortType, initiateBubbleSort, initiateHeapSort, initiateInsertionSort, initiateMergeSort, initiateQuickSort]);
 
-    const initiateBubbleSort = () => {
+    const initiateBubbleSort = useCallback(() => {
         handleIsSorting(true);
         const animations = bubbleSort([...arr]);
         const bars = document.getElementsByClassName("bar");
@@ -99,8 +82,8 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting }) => {
             }
             handleIsSorting(false);
         }, (animations.length + 100) * TIME_PER_MOVE);
-    };
-    const initiateInsertionSort = () => {
+    });
+    const initiateInsertionSort = useCallback(() => {
         handleIsSorting(true);
         const animations = insertionSort(array);
         const bars = document.getElementsByClassName("bar");
@@ -141,8 +124,8 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting }) => {
             }
             handleIsSorting(false);
         }, (animations.length + 100) * multiplier * TIME_PER_MOVE);
-    };
-    const initiateHeapSort = () => {
+    });
+    const initiateHeapSort = useCallback(() => {
         handleIsSorting(true)
         let unsortedArray = [...array];
         const animations = heapSort(unsortedArray);
@@ -197,8 +180,8 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting }) => {
             }
             handleIsSorting(false);
         }, (animations.length + 100) * TIME_PER_MOVE);
-    };
-    const initiateMergeSort = () => {
+    });
+    const initiateMergeSort = useCallback(() => {
         handleIsSorting(true);
         const bars = document.getElementsByClassName("bar");
         const animations = mergeSort([...array]);
@@ -250,8 +233,8 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting }) => {
             }
             handleIsSorting(false);
         }, (animations.length + 200) * TIME_PER_MOVE);
-    };
-    const initiateQuickSort = () => {
+    });
+    const initiateQuickSort = useCallback(() => {
         handleIsSorting(true);
         let unsortedArray = [...array];
         const animations = quickSort(unsortedArray);
@@ -343,7 +326,26 @@ const BarContainer = ({ array, sortType, noOfBars, handleIsSorting }) => {
             }
             handleIsSorting(false);
         }, (animations.length + 50) * multiplier * TIME_PER_MOVE);
-    };
+    });
+
+    useEffect(() => {
+        if (sortType === "bubbleSort") {
+            initiateBubbleSort();
+        }
+        else if (sortType === "insertionSort") {
+            initiateInsertionSort();
+        }
+        else if (sortType === "heapSort") {
+            initiateHeapSort();
+        }
+        else if (sortType === "mergeSort") {
+            initiateMergeSort();
+        }
+        else if (sortType === "quickSort") {
+            initiateQuickSort();
+        }
+        // eslint-disable-next-line
+    }, [sortType]);
 
 
 
